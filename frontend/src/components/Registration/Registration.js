@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Registration.css';
 
 
-function RegistrationForm(props) {
+function Registration(props) {
     const [state, setState] = useState({
         email: "",
         password: "",
@@ -26,6 +26,17 @@ function RegistrationForm(props) {
             sendDetailsToServer()
         } else {
             props.showError('Passwords do NOT match')
+        }
+    }
+
+    const sendDetailsToServer = () => {
+        if(state.email.length && state.password.length) {
+            props.showError(null);
+            const payload ={
+                "email": state.email,
+                "password": state.password,
+                "name": state.userName
+            }
         }
     }
 
@@ -79,3 +90,5 @@ function RegistrationForm(props) {
         </div>
     )
 }
+
+export default Registration

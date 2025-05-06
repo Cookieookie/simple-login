@@ -4,7 +4,7 @@ import './App.css';
 import Login from './components/Login/Login';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import Registration from './components/RegistrationForm/RegistrationForm';
+import Registration from './components/Registration/Registration.js';
 import PrivateRoute from './utils/PrivateRoute'
 import {
   BrowserRouter as Router,
