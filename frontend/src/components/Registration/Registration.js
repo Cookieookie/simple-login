@@ -20,22 +20,61 @@ function RegistrationForm(props) {
         }))
     }
 
+    const handleSubmitClick = (e) => {
+        e.preventDefault();
+        if(state.password === state.confirmPassword) {
+            sendDetailsToServer()
+        } else {
+            props.showError('Passwords do NOT match')
+        }
+    }
+
     return (
         <div>
             <form>
                 <div>
-                    <label>Email</label>
-                    <input/>
+                    <label htmlFor="inputEmail">Email</label>
+                    <input type="email"
+                            id="email"
+                            aria-describedby="emailHelp"
+                            placeholder="Enter email"
+                            className="form-control"
+                            value={state.email}
+                            onChange={handleChange}
+                    />
                 </div>
 
                 <div>
-                    <label>Password</label>
-                    <input/>
+                    <label htmlFor="inputPassword">Password</label>
+                    <input type="password"
+                            id="Password"
+                            placeholder="Password"
+                            className="form-control"
+                            value={state.password}
+                            onChange={handleChange}
+                            />
                 </div>
 
                 <div>
-                    <button>Register</button>
+                    <label htmlFor="confirmPassword"> Confirm Password</label>
+                    <input type="confirmPassword"
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            className="form-control"
+                            value={state.confirmPassword}
+                            onChange={handleChange}
+                            />
                 </div>
+
+                <div>
+                    <button type="submit"
+                            className="btn btn-primary"
+                            onClick={handleSubmitClick}
+                    >
+                        Register
+                    </button>
+                </div>
+
             </form>
         </div>
     )
