@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, { useState } from 'react';
 import './App.css';
 import Login from './components/Login/Login';
@@ -8,7 +7,7 @@ import Registration from './components/Registration/Registration.js';
 import PrivateRoute from './utils/PrivateRoute'
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom";
 import AlertComponent from './components/AlertComponent/AlertComponent';
@@ -23,22 +22,16 @@ function App() {
       <div>
       <Header title={title}/>
         <div>
-            <Switch>
-              <Route path="/" exact={true}>
-                <Registration showError={updateErrorMessage} updateTitle={updateTitle}/>
-              </Route>
-              <Route path="/register">
-                <Registration showError={updateErrorMessage} updateTitle={updateTitle}/>
-              </Route>
-              <Route path="/login">
-                <Login showError={updateErrorMessage} updateTitle={updateTitle}/>
-              </Route>
-              <PrivateRoute path="/home">
-                <Home />
-              </PrivateRoute>
-            </Switch>
+        
+          <Routes>
+            <Route path="/" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
+            <Route path="/register" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
+            <Route path="/login" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
+            <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          </Routes>
             
           <AlertComponent errorMessage={errorMessage} hideError={updateErrorMessage}/>
+          
         </div>
       </div>
     </Router>
