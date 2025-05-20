@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiConstants.js';
+import { API_BASE_URL, ACCESS_TOKEN_NAME } from '../../constants/apiConstants.js';
 import { useNavigate } from "react-router-dom";
 
 
 function Login(props) {
+
+    const Navigate = useNavigate();
 
     const [state, setState] = useState({
         email: "",
@@ -13,11 +15,15 @@ function Login(props) {
         errorMessage: null,
     })
 
-    const handleChange = () => {
-
+    const handleChange = (e) => {
+        const {id, value} = e.target
+        setState(prevState => ({
+            ...prevState,
+            [id] : value
+        }))
     }
 
-    const handleSubmitClick = () => {
+    const handleSubmitClick = (e) => {
         e.preventDefault();
         const payload={
             "email": state.email,
@@ -45,11 +51,11 @@ function Login(props) {
     }
 
     const redirectToHome = () => {
-        navigate('/home');
+        Navigate('/home');
     }
 
     const redirectToRegister = () => {
-        navigate('/login');
+        Navigate('/login');
     }
 
     return(

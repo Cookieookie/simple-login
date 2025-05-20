@@ -20,13 +20,13 @@ function App() {
   return (
     <Router>
       <div>
-      <Header title={title}/>
+      <Header title={ title || "Welcome" }/>
         <div>
         
           <Routes>
             <Route path="/" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
             <Route path="/register" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
-            <Route path="/login" element={<Registration showError={updateErrorMessage} updateTitle={updateTitle} />} />
+            <Route path="/login" element={<Login showError={updateErrorMessage} updateTitle={updateTitle} />} />
             <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           </Routes>
             
