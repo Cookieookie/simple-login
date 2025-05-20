@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 function Login(props) {
@@ -16,15 +17,38 @@ function Login(props) {
     }
 
     const handleSubmitClick = () => {
-
+        e.preventDefault();
+        const payload={
+            "email": state.email,
+            "password": state.password,
+        }
+        axios.post(API_BASE_URL+'/user/login', payload)
+            .then(function (response) {
+                if(response.status === 200) { //indicates HTTP request was succesful - 200 Success
+                    setState(prevState => ({
+                        ...prevState,
+                        'successMessage': "You're logged in! Redirecting to home page..."
+                    }))
+                    localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
+                    redirectToHome();
+                    props.showError(null)
+                } else if(response.status === 204) { //indicate a successful request, but the server is not sending any content back - 204 No Content1
+                    props.showError("Username and password do not match!");
+                } else { //indicate a login that does not exist
+                    props.showError("Username does not exist");
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     }
 
     const redirectToHome = () => {
-
+        navigate('/home');
     }
 
     const redirectToRegister = () => {
-
+        navigate('/login');
     }
 
     return(
