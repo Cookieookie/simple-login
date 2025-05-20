@@ -1,24 +1,77 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 
 
-function Login() {
+function Login(props) {
+
+    const [state, setState] = useState({
+        email: "",
+        password: "",
+        successMessage: null,
+        errorMessage: null,
+    })
+
+    const handleChange = () => {
+
+    }
+
+    const handleSubmitClick = () => {
+
+    }
+
+    const redirectToHome = () => {
+
+    }
+
+    const redirectToRegister = () => {
+
+    }
+
     return(
-        <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+        <div className='card col-12 col-lg-4 login-card mt-2 hv-center'>
             <div className='bg-white p-3 rounded w-25'>
-                <form action="">
-                    <div className='mb-3'>
-                        <label htmlFor="email"><strong>Email</strong></label>
-                        <input type="email" placeholder="Enter Email" className='form-control rounded-0'/>
+                <form>
+
+                    <div className="form-group text-left">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" 
+                                placeholder="Enter Email" 
+                                className="form-control"
+                                id="email"
+                                aria-describedby="emailHelp"
+                                value={state.email}
+                                onChange={handleChange}
+                                />
                     </div>
-                    <div className='mb-3'>
-                        <label htmlFor="password"><strong>Password</strong></label>
-                        <input type="password" placeholder="Password" className='form-control rounded-0'/>
+
+                    <div className="form-group text-left">
+                        <label htmlFor="password">Password</label>
+                        <input type="password"
+                                placeholder="Password"
+                                className="form-control"
+                                id="password"
+                                value={state.password}
+                                onChange={handleChange}
+                                />
                     </div>
-                    <button className='btn btn-success w-100 rounded-0'>Log in</button>
-                    <p className='text-sm-center'>Don't have an account yet?</p>
-                    <button className="btn btn-default border w-100 bg-light rounded-0">Create Account</button>
+
+                    <button type="submit"
+                            className="btn btn primary"
+                            onClick={handleSubmitClick}>Log in
+                    </button>
+
                 
                 </form>
+
+                <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
+                    {state.successMessage}
+                </div>
+                
+                <div className="registerMessage">
+                    <span>Don't have an account yet?</span>
+                    <span className="loginText" onClick={() => redirectToRegister()}>Create a new account</span>
+                </div>
+
             </div>
         </div>
     )
