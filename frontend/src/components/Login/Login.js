@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Login.css';
 import { API_BASE_URL, ACCESS_TOKEN_NAME } from '../../constants/apiConstants.js';
 import { useNavigate } from "react-router-dom";
 
@@ -47,6 +48,7 @@ function Login(props) {
             })
             .catch(function(error) {
                 console.log(error);
+                props.showError("An error occured while logging in. Please try again.");
             });
     }
 
@@ -55,7 +57,7 @@ function Login(props) {
     }
 
     const redirectToRegister = () => {
-        Navigate('/login');
+        Navigate('/register');
     }
 
     return(
@@ -87,7 +89,7 @@ function Login(props) {
                     </div>
 
                     <button type="submit"
-                            className="btn btn primary"
+                            className="btn btn-primary"
                             onClick={handleSubmitClick}>Log in
                     </button>
 
@@ -99,8 +101,10 @@ function Login(props) {
                 </div>
                 
                 <div className="registerMessage">
-                    <span>Don't have an account yet?</span>
-                    <span className="loginText" onClick={() => redirectToRegister()}>Create a new account</span>
+                    <span>Don't have an account yet? </span>
+                    <span className="loginText"
+                    style={{ fontWeight: 'bold', color: 'blue'}} 
+                    onClick={() => redirectToRegister()}>Create a new account</span>
                 </div>
 
             </div>
