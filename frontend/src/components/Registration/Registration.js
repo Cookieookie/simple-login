@@ -47,20 +47,20 @@ function Registration(props) {
                     if(response.status === 200) {
                         setState(prevState => ({
                             ...prevState,
-                            'successMessage' : 'You are now registered! Redirecting to home page. . .'
+                            successMessage : 'You are now registered! Redirecting to home page. . .'
                         }))
                         localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
                         redirectToHome();
                         props.showError(null)
                     } else {
-                        props.showError("Some error occured.");
+                        setState(prev => ({ ...prev, errorMessage: 'Some error occured.'}));
                     }
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    setState(prev => ({ ...prev, errorMessage: 'Some error occured.'}));
                 });
         } else {
-            props.showError('Please enter a valid username and password')
+            setState(prev => ({ ...prev, errorMessage: 'Please enter a valid username and password.'}));
         }
     }
 
