@@ -26,6 +26,14 @@ function Registration(props) {
         }))
     }
 
+    const redirectToHome = () => {
+        navigate('/home');
+    }
+
+    const redirectToLogin = () => {
+       navigate('/login');
+    }
+
     const sendDetailsToServer = () => {
         if(state.email.length && state.password.length) {
             props.showError(null);
@@ -56,13 +64,6 @@ function Registration(props) {
         }
     }
 
-    const redirectToHome = () => {
-        navigate('/home');
-    }
-
-    const redirectToLogin = () => {
-       navigate('/login');
-    }
     const handleSubmitClick = (e) => {
         e.preventDefault();
         if(state.password === state.confirmPassword) {
