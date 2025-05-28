@@ -5,7 +5,7 @@ import {API_BASE_URL, ACCESS_TOKEN_NAME} from '../../constants/apiConstants';
 import { useNavigate } from "react-router-dom";
 
 
-function Registration(props) {
+function Registration() {
 
     const navigate =useNavigate();
 
@@ -36,7 +36,6 @@ function Registration(props) {
 
     const sendDetailsToServer = () => {
         if(state.email.length && state.password.length) {
-            props.showError(null);
             const payload ={
                 "email": state.email,
                 "password": state.password,
@@ -51,7 +50,6 @@ function Registration(props) {
                         }))
                         localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
                         redirectToHome();
-                        props.showError(null)
                     } else {
                         setState(prev => ({ ...prev, errorMessage: 'Some error occured.'}));
                     }
